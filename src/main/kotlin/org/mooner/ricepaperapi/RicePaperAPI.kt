@@ -67,7 +67,7 @@ class RicePaperAPI {
                     }
                 }
             }
-            return null;
+            return null
         }
     }
 
