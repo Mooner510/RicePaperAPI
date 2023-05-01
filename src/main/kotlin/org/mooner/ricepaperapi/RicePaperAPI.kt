@@ -54,8 +54,8 @@ class RicePaperAPI {
             return strings
         }
 
-        fun getRice(schoolTag: String, schoolCode: String, riceType: RiceType, year: Int, month: Int, day: Int): Rice? {
-            val data: JSONObject = readJsonFromUrl("https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=83814d97c86242f7ae8e68e83a051933&Type=json&ATPT_OFCDC_SC_CODE=$schoolTag&SD_SCHUL_CODE=$schoolCode&MLSV_YMD=$year${zeroValue(month)}${zeroValue(day)}")
+        fun getRice(key: String, schoolTag: String, schoolCode: String, riceType: RiceType, year: Int, month: Int, day: Int): Rice? {
+            val data: JSONObject = readJsonFromUrl("https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=$key&Type=json&ATPT_OFCDC_SC_CODE=$schoolTag&SD_SCHUL_CODE=$schoolCode&MLSV_YMD=$year${zeroValue(month)}${zeroValue(day)}")
 
             if(data.has("mealServiceDietInfo")) {
                 val array: JSONArray = data.getJSONArray("mealServiceDietInfo").getJSONObject(1).getJSONArray("row")

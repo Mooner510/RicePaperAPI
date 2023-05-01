@@ -60,8 +60,8 @@ public class RicePaperJavaAPI {
         return Arrays.asList(strings);
     }
 
-    public static Rice getRice(String schoolTag, String schoolCode, RiceType riceType, int year, int month, int day) {
-        final JSONObject data = readJsonFromUrl("https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=83814d97c86242f7ae8e68e83a051933&Type=json&ATPT_OFCDC_SC_CODE=$schoolTag&SD_SCHUL_CODE=$schoolCode&MLSV_YMD=$year${zeroValue(month)}${zeroValue(day)}");
+    public static Rice getRice(String key, String schoolTag, String schoolCode, RiceType riceType, int year, int month, int day) {
+        final JSONObject data = readJsonFromUrl(String.format("https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=%s&Type=json&ATPT_OFCDC_SC_CODE=%s&SD_SCHUL_CODE=%s&MLSV_YMD=%d%s%s", key, schoolTag, schoolCode, year, zeroValue(month), zeroValue(day)));
 
         if (data.has("mealServiceDietInfo")) {
             final JSONArray array = data.getJSONArray("mealServiceDietInfo").getJSONObject(1).getJSONArray("row");
